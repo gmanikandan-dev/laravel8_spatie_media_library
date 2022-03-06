@@ -31,6 +31,12 @@
             <a href="{{ route('posts.create') }}" class="btn btn-dark">Add</a>
 
         </div>
+        @if(session('success'))
+        <div class="alert alert-success">
+            <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+            <strong>{{ session('success') }}</strong>
+        </div>
+        @endif
 
         <table class="table">
 
@@ -45,7 +51,7 @@
                     <th>Body</th>
 
                     <th width="30%">Image</th>
-
+                    <th>Action</th>
                 </tr>
 
             </thead>
@@ -63,6 +69,8 @@
                     <td>{{ $post->body }}</td>
 
                     <td><img src="{{$post->getFirstMediaUrl('images', 'thumb')}}" / width="120px"></td>
+                    <td> <button class="btn btn-danger btn-sm"> <a href="{{ url('removepost/'.$post->id) }}" class="button delete-confirm" style="text-decoration: none; color:white;"> drop</a></button>
+                        </td>
 
                 </tr>
 

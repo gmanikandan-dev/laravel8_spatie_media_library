@@ -43,4 +43,13 @@ class PostController extends Controller
         }
         return redirect()->route('posts.index');
     }
+    
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+        $post->clearMediaCollection('images');
+        return back()->with('success','Post is removed!');
+    }
 }
